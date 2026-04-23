@@ -3,7 +3,7 @@ import { NEW_PHOTO, marquee } from "./constants";
 
 const stats = [
   { value: "3+",       label: "года на сцене" },
-  { value: "500 000+", label: "зрителей" },
+  { value: "50 000+",  label: "зрителей" },
   { value: "100+",     label: "городов России" },
   { value: "12+",      label: "возрастной рейтинг" },
 ];

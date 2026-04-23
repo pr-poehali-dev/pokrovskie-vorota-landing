@@ -4,50 +4,34 @@
 
 @layer base {
   :root {
-    --background: 40 30% 97%;
-    --foreground: 25 40% 12%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 25 40% 12%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 25 40% 12%;
-
-    --primary: 22 90% 52%;
+    --background: 40 30% 95%;
+    --foreground: 0 0% 10%;
+    --card: 40 30% 97%;
+    --card-foreground: 0 0% 10%;
+    --popover: 40 30% 97%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 80% 42%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 45 80% 92%;
-    --secondary-foreground: 25 40% 12%;
-
-    --muted: 40 20% 93%;
-    --muted-foreground: 25 20% 45%;
-
-    --accent: 340 75% 55%;
+    --secondary: 40 50% 90%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 80% 42%;
     --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 35 20% 85%;
-    --input: 35 20% 85%;
-    --ring: 22 90% 52%;
-
-    --radius: 0.125rem;
-
-    --coral: #e8613a;
-    --mustard: #e8b84b;
-    --teal: #3a8b8b;
-    --rose: #d94f7a;
-    --cream: #fbf5e6;
-
-    --sidebar-background: 40 30% 97%;
-    --sidebar-foreground: 25 40% 12%;
-    --sidebar-primary: 22 90% 52%;
+    --border: 35 25% 82%;
+    --input: 35 25% 82%;
+    --ring: 0 80% 42%;
+    --radius: 0.25rem;
+    --sidebar-background: 40 30% 95%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 80% 42%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 45 80% 92%;
-    --sidebar-accent-foreground: 25 40% 12%;
-    --sidebar-border: 35 20% 85%;
-    --sidebar-ring: 22 90% 52%;
+    --sidebar-accent: 40 50% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 35 25% 82%;
+    --sidebar-ring: 0 80% 42%;
   }
 }
 
@@ -55,16 +39,12 @@
   * {
     @apply border-border;
   }
-
   html {
     scroll-behavior: smooth;
   }
-
   body {
     @apply bg-background text-foreground;
     font-family: "Montserrat", sans-serif;
-    background-color: #fbf5e6;
-    color: #2a1a0e;
     overflow-x: hidden;
   }
 }
@@ -73,98 +53,34 @@
   .font-cormorant {
     font-family: "Cormorant Garamond", serif;
   }
-
   .font-montserrat {
     font-family: "Montserrat", sans-serif;
   }
 
+  /* scroll reveal */
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(30px);
     transition:
-      opacity 0.75s ease,
-      transform 0.75s ease;
+      opacity 0.7s ease,
+      transform 0.7s ease;
   }
-
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .theater-label {
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #e8613a;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .theater-label::before,
-  .theater-label::after {
-    content: "";
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: #e8613a;
-    opacity: 0.5;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    background: #e8613a;
-    color: #fff;
-    padding: 0.9rem 2.5rem;
-    cursor: pointer;
-    border: none;
-    transition:
-      background 0.3s ease,
-      transform 0.2s ease;
-  }
-
-  .btn-primary:hover {
-    background: #d04f28;
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    display: inline-block;
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    background: transparent;
-    color: #e8613a;
-    padding: 0.9rem 2.5rem;
-    border: 1.5px solid #e8613a;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn-outline:hover {
-    background: #e8613a;
-    color: #fff;
-  }
-
+  /* nav link underline */
   .nav-link {
     font-family: "Montserrat", sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 500;
-    color: #2a1a0e;
+    font-weight: 600;
+    color: #fff;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
   }
-
   .nav-link::after {
     content: "";
     position: absolute;
@@ -172,50 +88,106 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #e8613a;
-    transition: width 0.3s ease;
+    background: #c8102e;
+    transition: width 0.3s;
   }
-
   .nav-link:hover {
-    color: #e8613a;
+    color: #f5d7a0;
   }
-
   .nav-link:hover::after {
     width: 100%;
   }
 
-  .card-hover {
+  /* red button */
+  .btn-red {
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: #c8102e;
+    color: #fff;
+    padding: 1rem 2.8rem;
+    border: none;
+    cursor: pointer;
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      background 0.25s,
+      transform 0.2s;
+    box-shadow: 0 4px 20px rgba(200, 16, 46, 0.35);
+  }
+  .btn-red:hover {
+    background: #a50d25;
+    transform: translateY(-2px);
   }
 
-  .card-hover:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 48px rgba(232, 97, 58, 0.12);
+  /* cream outline button */
+  .btn-cream {
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: transparent;
+    color: #fff;
+    padding: 1rem 2.8rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .btn-cream:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+  }
+
+  /* decorative label */
+  .section-label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #c8102e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .section-label::before,
+  .section-label::after {
+    content: "";
+    display: inline-block;
+    width: 2.5rem;
+    height: 1px;
+    background: #c8102e;
+    opacity: 0.5;
+  }
+
+  /* retro card */
+  .retro-card {
+    background: rgba(245, 235, 210, 0.07);
+    border: 1px solid rgba(245, 235, 210, 0.18);
+    transition:
+      border-color 0.3s,
+      transform 0.3s,
+      box-shadow 0.3s;
+  }
+  .retro-card:hover {
+    border-color: rgba(200, 16, 46, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
   }
 
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(45px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: scale(1.04) translateY(0);
-    }
-    50% {
-      transform: scale(1.04) translateY(-8px);
-    }
-  }
-
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -224,10 +196,24 @@
       transform: translateX(-50%);
     }
   }
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1) translateX(0) translateY(0);
+    }
+    50% {
+      transform: scale(1.06) translateX(-1%) translateY(-0.5%);
+    }
+    100% {
+      transform: scale(1) translateX(0) translateY(0);
+    }
+  }
 
   .animate-marquee {
-    animation: marquee 20s linear infinite;
+    animation: marquee 22s linear infinite;
     display: flex;
     white-space: nowrap;
+  }
+  .ken-burns {
+    animation: kenBurns 20s ease-in-out infinite;
   }
 }

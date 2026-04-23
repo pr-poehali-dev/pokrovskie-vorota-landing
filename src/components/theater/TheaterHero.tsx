@@ -59,7 +59,7 @@ function Hero() {
               }}
             >
               Покров&shy;ские<br />
-              <span className="text-[#C8102E]">ворота</span>
+              <span className="text-[#ffffff]">ворота</span>
             </h1>
 
             <div

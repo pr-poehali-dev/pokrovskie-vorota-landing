@@ -1,100 +1,80 @@
 import { useEffect, useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMAGE = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/files/03c4c002-dcaf-4c77-a605-3ae543b1ae90.jpg";
-const ACTOR_IMAGE = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/files/de0638e8-64a0-4cdd-8124-2bf8e0491652.jpg";
-
-const actors = [
-  { name: "Александр Громов", role: "Главная роль — Граф", img: ACTOR_IMAGE },
-  { name: "Мария Светлова", role: "Возлюбленная", img: ACTOR_IMAGE },
-  { name: "Виктор Тёмный", role: "Антагонист", img: ACTOR_IMAGE },
-  { name: "Анна Лесная", role: "Служанка", img: ACTOR_IMAGE },
-];
+const MAIN_PHOTO = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/05d177ea-ff55-429b-931a-88345a1bee46.jpg";
+const STAGE_IMG  = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/files/cd5b3561-a192-4cda-9714-543cfe58e90d.jpg";
+const POSTER_IMG = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/files/fa661ca9-78e1-48a7-b199-a5369789c747.jpg";
 
 const shows = [
-  { date: "15 мая", day: "пятница", time: "19:00", hall: "Большой зал", status: "available" },
-  { date: "16 мая", day: "суббота", time: "19:00", hall: "Большой зал", status: "few" },
-  { date: "17 мая", day: "воскресенье", time: "18:00", hall: "Большой зал", status: "available" },
-  { date: "23 мая", day: "суббота", time: "19:00", hall: "Камерная сцена", status: "available" },
-  { date: "24 мая", day: "воскресенье", time: "18:00", hall: "Камерная сцена", status: "sold" },
-  { date: "30 мая", day: "суббота", time: "19:00", hall: "Большой зал", status: "available" },
+  { date: "15 мая", day: "пятница",     time: "19:00", hall: "Большой зал",    price: "от 800 ₽", status: "available" },
+  { date: "16 мая", day: "суббота",     time: "19:00", hall: "Большой зал",    price: "от 800 ₽", status: "few" },
+  { date: "17 мая", day: "воскресенье", time: "18:00", hall: "Большой зал",    price: "от 800 ₽", status: "available" },
+  { date: "23 мая", day: "суббота",     time: "19:00", hall: "Камерная сцена", price: "от 600 ₽", status: "available" },
+  { date: "24 мая", day: "воскресенье", time: "18:00", hall: "Камерная сцена", price: "от 600 ₽", status: "sold" },
+  { date: "30 мая", day: "суббота",     time: "19:00", hall: "Большой зал",    price: "от 800 ₽", status: "available" },
 ];
 
-const galleryImages = [
-  HERO_IMAGE, ACTOR_IMAGE, HERO_IMAGE, ACTOR_IMAGE, HERO_IMAGE, ACTOR_IMAGE,
+const actors = [
+  { name: "Анна Белова",     role: "Главная роль",     img: MAIN_PHOTO },
+  { name: "Дмитрий Ковалёв", role: "Ведущий актёр",    img: MAIN_PHOTO },
+  { name: "Светлана Орлова", role: "Характерная роль", img: MAIN_PHOTO },
+  { name: "Игорь Степанов",  role: "Комедийная роль",  img: MAIN_PHOTO },
 ];
+
+const galleryImgs = [MAIN_PHOTO, STAGE_IMG, POSTER_IMG, MAIN_PHOTO, STAGE_IMG, POSTER_IMG];
+
+const marqueeItems = ["Музыкальная комедия","★","Живой оркестр","★","Хиты советской эстрады","★","Премьера сезона","★","16+","★"];
 
 function useReveal() {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.12 }
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
+      { threshold: 0.1 }
     );
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 }
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   const links = [
-    { href: "#about", label: "О спектакле" },
+    { href: "#about",   label: "О спектакле" },
     { href: "#tickets", label: "Касса" },
-    { href: "#actors", label: "Актёры" },
+    { href: "#actors",  label: "Актёры" },
     { href: "#gallery", label: "Галерея" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#1a1a1a]" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <a href="#hero" className="font-cormorant text-xl text-[#C9A84C] italic tracking-widest">
-          МАСКА
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      scrolled ? "bg-[#FBF5E6]/96 backdrop-blur shadow-sm border-b border-[#e8d8c0]" : "bg-transparent"
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#hero" className="font-cormorant text-2xl font-bold italic text-[#E8613A] tracking-wide leading-none">
+          Весёлые<br /><span className="text-[#2a1a0e] not-italic text-base tracking-[0.2em] font-light">РЕБЯТА</span>
         </a>
-        <div className="hidden md:flex items-center gap-10">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link">
-              {l.label}
-            </a>
-          ))}
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => <a key={l.href} href={l.href} className="nav-link">{l.label}</a>)}
         </div>
-        <a href="#tickets" className="hidden md:block ticket-btn">
-          <span>Купить билет</span>
-        </a>
-        <button
-          className="md:hidden text-[#C9A84C]"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <Icon name={menuOpen ? "X" : "Menu"} size={22} />
+        <a href="#tickets" className="hidden md:block btn-primary">Купить билет</a>
+        <button className="md:hidden text-[#E8613A]" onClick={() => setOpen(!open)}>
+          <Icon name={open ? "X" : "Menu"} size={22} />
         </button>
       </div>
-      {menuOpen && (
-        <div className="md:hidden bg-[#0a0a0a]/98 border-t border-[#1a1a1a] px-6 py-6 flex flex-col gap-6">
+      {open && (
+        <div className="md:hidden bg-[#FBF5E6] border-t border-[#e8d8c0] px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link text-sm" onClick={() => setMenuOpen(false)}>
-              {l.label}
-            </a>
+            <a key={l.href} href={l.href} className="nav-link" onClick={() => setOpen(false)}>{l.label}</a>
           ))}
-          <a href="#tickets" className="ticket-btn text-center" onClick={() => setMenuOpen(false)}>
-            <span>Купить билет</span>
-          </a>
+          <a href="#tickets" className="btn-primary text-center" onClick={() => setOpen(false)}>Купить билет</a>
         </div>
       )}
     </nav>
@@ -103,83 +83,93 @@ function Nav() {
 
 function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      <div className="absolute inset-0">
-        <img
-          src={HERO_IMAGE}
-          alt="Спектакль"
-          className="w-full h-full object-cover object-center"
-          style={{ animation: "float 14s ease-in-out infinite" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/30 to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/60 via-transparent to-[#0a0a0a]/60" />
-      </div>
+    <section id="hero" className="relative min-h-screen flex flex-col overflow-hidden bg-[#FBF5E6]">
+      {/* diagonal bg */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "linear-gradient(158deg, #FBF5E6 46%, #E8613A 46%)" }}
+      />
+      {/* decorative dots */}
+      <div className="absolute top-28 left-12 w-3 h-3 rounded-full bg-[#E8B84B]" />
+      <div className="absolute top-44 left-28 w-2 h-2 rounded-full bg-[#3A8B8B] opacity-70" />
+      <div className="absolute bottom-44 right-20 w-4 h-4 rounded-full bg-[#E8B84B] opacity-60" />
+      <div className="absolute bottom-28 right-44 w-2 h-2 rounded-full bg-[#D94F7A] opacity-70" />
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-[#C9A84C]/40" />
-      </div>
-
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        <div
-          className="font-montserrat text-[0.65rem] tracking-[0.4em] text-[#C9A84C] uppercase mb-8 opacity-0"
-          style={{ animation: "fadeUp 0.8s ease-out 0.2s forwards" }}
-        >
-          Государственный академический театр · Премьера сезона
-        </div>
-
-        <h1
-          className="font-cormorant text-[clamp(4.5rem,13vw,10rem)] leading-none font-light italic opacity-0 mb-4"
-          style={{ animation: "fadeUp 0.9s ease-out 0.4s forwards" }}
-        >
-          <span className="gold-text-gradient">Маска</span>
-        </h1>
-
-        <div
-          className="font-cormorant text-[clamp(1rem,2.5vw,1.4rem)] text-[#f0ead8]/60 italic mb-14 opacity-0"
-          style={{ animation: "fadeUp 0.9s ease-out 0.6s forwards" }}
-        >
-          Трагедия в двух актах по мотивам А.П. Чехова
-        </div>
-
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0"
-          style={{ animation: "fadeUp 0.9s ease-out 0.8s forwards" }}
-        >
-          <a href="#tickets" className="ticket-btn">
-            <span>Купить билет</span>
-          </a>
-          <a
-            href="#about"
-            className="font-montserrat text-[0.7rem] tracking-[0.2em] uppercase text-[#f0ead8]/50 hover:text-[#C9A84C] transition-colors flex items-center gap-2"
+      <div className="relative z-10 flex-1 flex items-center max-w-7xl mx-auto w-full px-6 pt-24 pb-10 gap-10">
+        {/* left text */}
+        <div className="flex-1 min-w-0">
+          <div
+            className="theater-label mb-6 opacity-0"
+            style={{ animation: "fadeUp .7s ease-out .1s forwards" }}
           >
-            О спектакле <Icon name="ArrowDown" size={14} />
-          </a>
+            Музыкальная комедия
+          </div>
+          <h1
+            className="font-cormorant text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.92] font-bold italic text-[#2a1a0e] mb-6 opacity-0"
+            style={{ animation: "fadeUp .8s ease-out .25s forwards" }}
+          >
+            Весёлые<br /><span className="text-[#E8613A]">ребята</span>
+          </h1>
+          <p
+            className="font-montserrat text-sm text-[#2a1a0e]/60 leading-relaxed max-w-sm mb-10 opacity-0"
+            style={{ animation: "fadeUp .8s ease-out .4s forwards" }}
+          >
+            Солнечная музыкальная комедия по мотивам советской классики.
+            Живой оркестр, хиты эстрады 50–60-х и искромётный юмор.
+          </p>
+          <div
+            className="flex flex-wrap gap-4 mb-12 opacity-0"
+            style={{ animation: "fadeUp .8s ease-out .55s forwards" }}
+          >
+            <a href="#tickets" className="btn-primary">Купить билет</a>
+            <a href="#about"   className="btn-outline">О спектакле</a>
+          </div>
+          <div
+            className="flex flex-wrap gap-8 opacity-0"
+            style={{ animation: "fadeUp .8s ease-out .7s forwards" }}
+          >
+            {[
+              { v: "2 ч 15 м", l: "Продолжительность" },
+              { v: "1",        l: "Антракт" },
+              { v: "16+",      l: "Возраст" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="font-cormorant text-3xl font-bold text-[#E8613A]">{s.v}</div>
+                <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#2a1a0e]/40 mt-0.5">{s.l}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
+        {/* right photo */}
         <div
-          className="mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-0"
-          style={{ animation: "fadeUp 0.9s ease-out 1s forwards" }}
+          className="hidden lg:block flex-shrink-0 w-[500px] opacity-0"
+          style={{ animation: "fadeUp 1s ease-out .3s forwards" }}
         >
-          {[
-            { label: "Продолжительность", value: "2 ч 30 мин" },
-            { label: "Антракт", value: "1 антракт" },
-            { label: "Возраст", value: "18+" },
-          ].map((item) => (
-            <div key={item.label} className="text-center">
-              <div className="font-cormorant text-2xl text-[#C9A84C]">{item.value}</div>
-              <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/40 mt-1">
-                {item.label}
-              </div>
+          <div className="relative">
+            <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#E8B84B]/60" />
+            <img
+              src={MAIN_PHOTO}
+              alt="Весёлые ребята"
+              className="relative w-full object-cover"
+              style={{ animation: "float 10s ease-in-out infinite" }}
+            />
+            <div className="absolute -bottom-5 -left-5 bg-[#E8613A] text-white px-5 py-3 font-cormorant text-xl italic font-bold shadow-lg">
+              Премьера!
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* marquee strip */}
+      <div className="relative z-10 bg-[#E8613A] py-3 overflow-hidden">
+        <div className="animate-marquee">
+          {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span key={i} className="font-montserrat text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white/90 px-6">
+              {item}
+            </span>
           ))}
         </div>
-      </div>
-
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <div className="w-px h-12 bg-gradient-to-b from-[#C9A84C] to-transparent opacity-50 animate-pulse" />
       </div>
     </section>
   );
@@ -187,60 +177,55 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="py-32 px-6 bg-[#0a0a0a] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#C9A84C]/3 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#C9A84C]/3 blur-3xl pointer-events-none" />
+    <section id="about" className="py-28 px-6 bg-[#FBF5E6] relative">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#E8B84B]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        <div className="reveal theater-divider mb-4">
-          <span className="font-montserrat text-[0.65rem] tracking-[0.3em] uppercase text-[#C9A84C]">
-            О спектакле
-          </span>
-        </div>
+        <div className="reveal theater-label mb-3 justify-center">О спектакле</div>
+        <h2 className="reveal font-cormorant text-[clamp(2.2rem,5vw,3.8rem)] italic font-bold text-center text-[#2a1a0e] mb-16 leading-tight">
+          Советская эстрада,<br />
+          <span className="text-[#E8613A]">живой оркестр и безудержный смех</span>
+        </h2>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center mt-12">
-          <div>
-            <h2 className="reveal font-cormorant text-[clamp(2.5rem,5vw,4rem)] leading-tight font-light italic text-[#f0ead8] mb-8">
-              История, которая
-              <br />
-              <span className="text-[#C9A84C]">разрывает сердце</span>
-            </h2>
-            <p className="reveal font-montserrat text-sm leading-loose text-[#f0ead8]/60 mb-6">
-              Граф Алексей скрывает своё истинное лицо за элегантной маской добропорядочности.
-              Но когда в его жизнь врывается молодая художница Наташа, стены притворства начинают
-              рушиться. Любовь и ложь, честь и страсть — в этом спектакле нет правых.
-            </p>
-            <p className="reveal font-montserrat text-sm leading-loose text-[#f0ead8]/60 mb-10">
-              Постановка режиссёра Михаила Воронова стала одним из главных событий театрального
-              сезона. Живая музыка, авторские декорации и безупречная игра актёров погружают
-              зрителя в атмосферу Петербурга XIX века.
-            </p>
-            <div className="reveal flex flex-wrap gap-3">
-              {["Режиссёр: М. Воронов", "Художник: Е. Соловьёва", "Музыка: П. Архипов"].map((tag) => (
-                <span
-                  key={tag}
-                  className="font-montserrat text-[0.6rem] tracking-widest uppercase border border-[#C9A84C]/30 text-[#C9A84C]/70 px-3 py-1.5"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="reveal hover-lift">
-            <div className="relative aspect-video bg-[#111] overflow-hidden border border-[#1a1a1a]">
+        <div className="grid md:grid-cols-2 gap-14 items-center">
+          <div className="reveal card-hover order-2 md:order-1">
+            <div className="relative aspect-video overflow-hidden border-2 border-[#e8d8c0] shadow-xl">
               <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&color=white"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
                 title="Трейлер спектакля"
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent pointer-events-none" />
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent pointer-events-none" />
             </div>
-            <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/30 text-center mt-3">
-              Официальный трейлер · 2 мин 45 сек
+            <div className="font-montserrat text-[0.56rem] tracking-widest uppercase text-[#2a1a0e]/35 text-center mt-3">
+              Трейлер · 2 мин 30 сек
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <p className="reveal font-montserrat text-sm leading-loose text-[#2a1a0e]/65 mb-5">
+              «Весёлые ребята» — это праздник, который начинается с первой ноты. Молодой джазмен
+              Костя влюбляется в певицу Анюту и вместе с друзьями отправляется покорять столичную
+              сцену. Путаница, смех, музыка — и всё это в ярких костюмах эпохи!
+            </p>
+            <p className="reveal font-montserrat text-sm leading-loose text-[#2a1a0e]/65 mb-10">
+              Спектакль создан с любовью к советскому кино. Живой оркестр исполняет легендарные
+              мелодии, которые невозможно слушать не улыбаясь.
+            </p>
+
+            <div className="reveal grid grid-cols-2 gap-4">
+              {[
+                { label: "Режиссёр",    value: "Михаил Воронов" },
+                { label: "Дирижёр",     value: "Павел Архипов" },
+                { label: "Сценография", value: "Елена Соловьёва" },
+                { label: "Хореография", value: "Наталья Цветкова" },
+              ].map((c) => (
+                <div key={c.label} className="border-l-2 border-[#E8B84B] pl-3">
+                  <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#2a1a0e]/40">{c.label}</div>
+                  <div className="font-montserrat text-xs font-semibold text-[#2a1a0e] mt-0.5">{c.value}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -251,72 +236,66 @@ function About() {
 
 function Tickets() {
   return (
-    <section id="tickets" className="py-32 px-6 bg-[#080808] relative">
-      <div className="max-w-6xl mx-auto relative">
-        <div className="reveal theater-divider mb-4">
-          <span className="font-montserrat text-[0.65rem] tracking-[0.3em] uppercase text-[#C9A84C]">
-            Касса
-          </span>
-        </div>
+    <section id="tickets" className="py-28 px-6 bg-[#2a1a0e] relative overflow-hidden">
+      <div
+        className="absolute inset-0 pointer-events-none opacity-5"
+        style={{ backgroundImage: "radial-gradient(#E8B84B 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+      />
 
-        <h2 className="reveal font-cormorant text-[clamp(2.5rem,5vw,4rem)] font-light italic text-[#f0ead8] mt-8 mb-4">
+      <div className="max-w-6xl mx-auto relative">
+        <div className="reveal theater-label mb-3 justify-center" style={{ color: "#E8B84B" }}>
+          Касса
+        </div>
+        <h2 className="reveal font-cormorant text-[clamp(2.2rem,5vw,3.8rem)] italic font-bold text-center text-[#FBF5E6] mb-4">
           Расписание спектаклей
         </h2>
-        <p className="reveal font-montserrat text-sm text-[#f0ead8]/40 mb-16 tracking-wide">
-          Билеты от 800 до 3500 рублей · Скидки для студентов и пенсионеров
+        <p className="reveal font-montserrat text-xs text-[#FBF5E6]/40 text-center mb-14 tracking-widest uppercase">
+          Скидки студентам и пенсионерам · Групповые заявки от 10 человек
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {shows.map((show, i) => (
             <div
               key={i}
-              className={`reveal hover-lift border p-6 relative overflow-hidden group ${
+              className={`reveal card-hover border p-6 relative group ${
                 show.status === "sold"
-                  ? "border-[#1a1a1a] opacity-50"
-                  : "border-[#1a1a1a] hover:border-[#C9A84C]/40"
+                  ? "bg-white/3 border-white/8 opacity-50"
+                  : "bg-white/5 border-[#E8B84B]/20 hover:border-[#E8B84B]/60"
               }`}
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/20 to-transparent group-hover:via-[#C9A84C]/60 transition-all duration-500" />
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#E8613A] opacity-0 group-hover:opacity-100 transition-all duration-400" />
 
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <div className="font-cormorant text-3xl text-[#f0ead8]">{show.date}</div>
-                  <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/40">
-                    {show.day}
-                  </div>
+                  <div className="font-cormorant text-3xl font-bold text-[#FBF5E6]">{show.date}</div>
+                  <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#FBF5E6]/35">{show.day}</div>
                 </div>
-                <div
-                  className={`font-montserrat text-[0.55rem] tracking-widest uppercase px-2 py-1 ${
-                    show.status === "available"
-                      ? "text-emerald-400 border border-emerald-400/30"
-                      : show.status === "few"
-                      ? "text-amber-400 border border-amber-400/30"
-                      : "text-[#f0ead8]/30 border border-[#f0ead8]/10"
-                  }`}
-                >
-                  {show.status === "available"
-                    ? "Билеты есть"
-                    : show.status === "few"
-                    ? "Мало мест"
-                    : "Sold out"}
-                </div>
+                <span className={`font-montserrat text-[0.53rem] uppercase tracking-wider px-2 py-1 border ${
+                  show.status === "available" ? "text-emerald-400 border-emerald-400/30" :
+                  show.status === "few"       ? "text-[#E8B84B] border-[#E8B84B]/40" :
+                                               "text-white/25 border-white/10"
+                }`}>
+                  {show.status === "available" ? "Есть билеты" : show.status === "few" ? "Мало мест" : "Sold out"}
+                </span>
               </div>
 
               <div className="flex items-center gap-2 mb-1">
-                <Icon name="Clock" size={12} className="text-[#C9A84C]" />
-                <span className="font-montserrat text-xs text-[#f0ead8]/60">{show.time}</span>
+                <Icon name="Clock"  size={11} className="text-[#E8B84B]" />
+                <span className="font-montserrat text-xs text-[#FBF5E6]/55">{show.time}</span>
+              </div>
+              <div className="flex items-center gap-2 mb-1">
+                <Icon name="MapPin" size={11} className="text-[#E8B84B]" />
+                <span className="font-montserrat text-xs text-[#FBF5E6]/55">{show.hall}</span>
               </div>
               <div className="flex items-center gap-2 mb-6">
-                <Icon name="MapPin" size={12} className="text-[#C9A84C]" />
-                <span className="font-montserrat text-xs text-[#f0ead8]/60">{show.hall}</span>
+                <Icon name="Ticket" size={11} className="text-[#E8B84B]" />
+                <span className="font-montserrat text-xs font-semibold text-[#E8B84B]">{show.price}</span>
               </div>
 
               {show.status !== "sold" ? (
-                <button className="ticket-btn w-full text-center">
-                  <span>Выбрать места</span>
-                </button>
+                <button className="btn-primary w-full text-center">Выбрать места</button>
               ) : (
-                <div className="font-montserrat text-[0.65rem] tracking-widest uppercase text-center text-[#f0ead8]/20 border border-[#1a1a1a] py-3">
+                <div className="font-montserrat text-[0.58rem] uppercase tracking-widest text-center text-white/20 border border-white/10 py-3">
                   Все места проданы
                 </div>
               )}
@@ -324,15 +303,17 @@ function Tickets() {
           ))}
         </div>
 
-        <div className="reveal mt-12 p-6 border border-[#C9A84C]/20 bg-[#C9A84C]/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="reveal mt-10 bg-[#E8613A]/10 border border-[#E8613A]/25 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Icon name="Phone" size={16} className="text-[#C9A84C]" />
+            <div className="w-10 h-10 bg-[#E8613A] flex items-center justify-center flex-shrink-0">
+              <Icon name="Phone" size={16} className="text-white" />
+            </div>
             <div>
-              <div className="font-montserrat text-xs text-[#f0ead8]/70">Касса театра</div>
-              <div className="font-cormorant text-lg text-[#C9A84C]">+7 (495) 000-00-00</div>
+              <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#FBF5E6]/40">Касса театра</div>
+              <div className="font-cormorant text-xl font-bold text-[#E8B84B]">+7 (495) 000-00-00</div>
             </div>
           </div>
-          <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/40">
+          <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#FBF5E6]/35 text-center">
             Пн–Пт: 11:00–19:00 · Сб–Вс: 12:00–18:00
           </div>
         </div>
@@ -343,37 +324,26 @@ function Tickets() {
 
 function Actors() {
   return (
-    <section id="actors" className="py-32 px-6 bg-[#0a0a0a]">
+    <section id="actors" className="py-28 px-6 bg-[#FBF5E6]">
       <div className="max-w-6xl mx-auto">
-        <div className="reveal theater-divider mb-4">
-          <span className="font-montserrat text-[0.65rem] tracking-[0.3em] uppercase text-[#C9A84C]">
-            Состав
-          </span>
-        </div>
-
-        <h2 className="reveal font-cormorant text-[clamp(2.5rem,5vw,4rem)] font-light italic text-[#f0ead8] mt-8 mb-16">
+        <div className="reveal theater-label mb-3 justify-center">Состав</div>
+        <h2 className="reveal font-cormorant text-[clamp(2.2rem,5vw,3.8rem)] italic font-bold text-center text-[#2a1a0e] mb-16">
           Актёры
         </h2>
-
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {actors.map((actor, i) => (
-            <div key={i} className="reveal group cursor-pointer">
-              <div className="relative overflow-hidden mb-4 aspect-[3/4]">
+          {actors.map((a, i) => (
+            <div key={i} className="reveal card-hover group cursor-pointer">
+              <div className="relative overflow-hidden aspect-[3/4] mb-4">
                 <img
-                  src={actor.img}
-                  alt={actor.name}
-                  className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  src={a.img}
+                  alt={a.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-600"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
-                <div className="absolute inset-0 border border-transparent group-hover:border-[#C9A84C]/30 transition-all duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-transparent to-transparent group-hover:via-[#C9A84C] transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2a1a0e]/60 via-transparent to-transparent" />
+                <div className="absolute top-3 left-3 w-6 h-6 bg-[#E8613A] opacity-0 group-hover:opacity-100 transition-all duration-300" />
               </div>
-              <div className="font-cormorant text-lg text-[#f0ead8] group-hover:text-[#C9A84C] transition-colors duration-300">
-                {actor.name}
-              </div>
-              <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/40 mt-1">
-                {actor.role}
-              </div>
+              <div className="font-cormorant text-lg font-bold text-[#2a1a0e] group-hover:text-[#E8613A] transition-colors duration-300">{a.name}</div>
+              <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#2a1a0e]/40 mt-1">{a.role}</div>
             </div>
           ))}
         </div>
@@ -383,80 +353,63 @@ function Actors() {
 }
 
 function Gallery() {
-  const [selected, setSelected] = useState<number | null>(null);
+  const [sel, setSel] = useState<number | null>(null);
 
   return (
-    <section id="gallery" className="py-32 px-6 bg-[#080808]">
+    <section id="gallery" className="py-28 px-6 bg-[#f3ead6]">
       <div className="max-w-6xl mx-auto">
-        <div className="reveal theater-divider mb-4">
-          <span className="font-montserrat text-[0.65rem] tracking-[0.3em] uppercase text-[#C9A84C]">
-            Галерея
-          </span>
-        </div>
-
-        <h2 className="reveal font-cormorant text-[clamp(2.5rem,5vw,4rem)] font-light italic text-[#f0ead8] mt-8 mb-16">
+        <div className="reveal theater-label mb-3 justify-center">Галерея</div>
+        <h2 className="reveal font-cormorant text-[clamp(2.2rem,5vw,3.8rem)] italic font-bold text-center text-[#2a1a0e] mb-16">
           Фотографии
         </h2>
-
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {galleryImages.map((img, i) => (
+          {galleryImgs.map((img, i) => (
             <div
               key={i}
-              className={`reveal overflow-hidden cursor-pointer group relative ${
-                i === 0 ? "md:col-span-2 md:row-span-2" : ""
-              }`}
-              onClick={() => setSelected(i)}
+              onClick={() => setSel(i)}
+              className={`reveal overflow-hidden cursor-pointer group relative ${i === 0 ? "md:col-span-2" : ""}`}
             >
-              <div
-                className={`relative overflow-hidden ${i === 0 ? "aspect-square" : "aspect-video"}`}
-                style={i === 0 ? { minHeight: "300px" } : {}}
-              >
+              <div className={`relative overflow-hidden ${i === 0 ? "aspect-video" : "aspect-square"}`}>
                 <img
                   src={img}
                   alt={`Фото ${i + 1}`}
-                  className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-all duration-600"
                 />
-                <div className="absolute inset-0 bg-[#0a0a0a]/0 group-hover:bg-[#0a0a0a]/20 transition-all duration-500" />
+                <div className="absolute inset-0 bg-[#E8613A]/0 group-hover:bg-[#E8613A]/15 transition-all duration-400" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="border border-[#C9A84C] p-3">
-                    <Icon name="ZoomIn" size={16} className="text-[#C9A84C]" />
+                  <div className="bg-white/90 p-3">
+                    <Icon name="ZoomIn" size={18} className="text-[#E8613A]" />
                   </div>
                 </div>
-                <div className="absolute inset-0 border border-transparent group-hover:border-[#C9A84C]/20 transition-all duration-500" />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {selected !== null && (
+      {sel !== null && (
         <div
-          className="fixed inset-0 z-50 bg-[#0a0a0a]/95 flex items-center justify-center p-6"
-          onClick={() => setSelected(null)}
+          className="fixed inset-0 z-50 bg-[#2a1a0e]/96 flex items-center justify-center p-6"
+          onClick={() => setSel(null)}
         >
           <button
-            className="absolute top-6 right-6 text-[#f0ead8]/60 hover:text-[#C9A84C] transition-colors"
-            onClick={() => setSelected(null)}
+            className="absolute top-5 right-5 text-white/50 hover:text-white transition-colors"
+            onClick={() => setSel(null)}
           >
-            <Icon name="X" size={24} />
+            <Icon name="X" size={26} />
           </button>
           <img
-            src={galleryImages[selected]}
-            alt="Фото"
-            className="max-w-4xl max-h-[80vh] object-contain"
+            src={galleryImgs[sel]}
+            alt=""
+            className="max-w-4xl max-h-[80vh] object-contain shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-            {galleryImages.map((_, i) => (
+            {galleryImgs.map((_, i) => (
               <button
                 key={i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === selected ? "bg-[#C9A84C] w-6" : "bg-[#f0ead8]/30 w-1.5"
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelected(i);
-                }}
+                onClick={(e) => { e.stopPropagation(); setSel(i); }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === sel ? "bg-[#E8613A] w-7" : "bg-white/25 w-1.5"}`}
               />
             ))}
           </div>
@@ -468,58 +421,33 @@ function Gallery() {
 
 function Footer() {
   return (
-    <footer className="bg-[#060606] border-t border-[#1a1a1a] py-16 px-6">
+    <footer className="bg-[#1a0f06] py-14 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-10">
           <div>
-            <div className="font-cormorant text-3xl text-[#C9A84C] italic mb-2">МАСКА</div>
-            <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/30">
-              Государственный академический театр
-            </div>
+            <div className="font-cormorant text-3xl font-bold italic text-[#E8613A] mb-1">Весёлые ребята</div>
+            <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-white/30">Государственный академический театр</div>
           </div>
           <div className="grid grid-cols-2 gap-10">
             <div>
-              <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#C9A84C] mb-4">
-                Навигация
-              </div>
-              {[
-                { label: "О спектакле", href: "#about" },
-                { label: "Касса", href: "#tickets" },
-                { label: "Актёры", href: "#actors" },
-                { label: "Галерея", href: "#gallery" },
-              ].map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="block font-montserrat text-xs text-[#f0ead8]/40 hover:text-[#C9A84C] transition-colors mb-2"
-                >
-                  {l.label}
-                </a>
+              <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#E8B84B] mb-4">Разделы</div>
+              {[["О спектакле","#about"],["Касса","#tickets"],["Актёры","#actors"],["Галерея","#gallery"]].map(([l,h]) => (
+                <a key={h} href={h} className="block font-montserrat text-xs text-white/35 hover:text-[#E8613A] transition-colors mb-2">{l}</a>
               ))}
             </div>
             <div>
-              <div className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#C9A84C] mb-4">
-                Контакты
-              </div>
-              <div className="font-montserrat text-xs text-[#f0ead8]/40 mb-2">+7 (495) 000-00-00</div>
-              <div className="font-montserrat text-xs text-[#f0ead8]/40 mb-2">info@theater.ru</div>
-              <div className="font-montserrat text-xs text-[#f0ead8]/40">Москва, Театральная пл., 1</div>
+              <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-[#E8B84B] mb-4">Контакты</div>
+              <div className="font-montserrat text-xs text-white/35 mb-2">+7 (495) 000-00-00</div>
+              <div className="font-montserrat text-xs text-white/35 mb-2">info@theater.ru</div>
+              <div className="font-montserrat text-xs text-white/35">Москва, Театральная пл., 1</div>
             </div>
           </div>
         </div>
-        <div className="border-t border-[#1a1a1a] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="font-montserrat text-[0.6rem] text-[#f0ead8]/20 tracking-wide">
-            © 2024 Государственный академический театр. Все права защищены.
-          </div>
-          <div className="flex gap-4">
-            {["ВКонтакте", "Telegram", "YouTube"].map((soc) => (
-              <a
-                key={soc}
-                href="#"
-                className="font-montserrat text-[0.6rem] tracking-widest uppercase text-[#f0ead8]/30 hover:text-[#C9A84C] transition-colors"
-              >
-                {soc}
-              </a>
+        <div className="border-t border-white/8 pt-7 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="font-montserrat text-[0.56rem] text-white/20">© 2024 Государственный академический театр</div>
+          <div className="flex gap-5">
+            {["ВКонтакте","Telegram","YouTube"].map((s) => (
+              <a key={s} href="#" className="font-montserrat text-[0.56rem] uppercase tracking-widest text-white/25 hover:text-[#E8613A] transition-colors">{s}</a>
             ))}
           </div>
         </div>
@@ -530,9 +458,8 @@ function Footer() {
 
 export default function Index() {
   useReveal();
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen">
       <Nav />
       <Hero />
       <About />

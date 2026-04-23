@@ -1,114 +1,172 @@
 import Icon from "@/components/ui/icon";
-import { NEW_PHOTO } from "./constants";
+import { NEW_PHOTO, POSTER, cast } from "./constants";
 
+/* ─── About ─── */
 function About() {
   return (
-    <section id="about" className="relative py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={NEW_PHOTO} alt="" className="w-full h-full object-cover object-top scale-110" style={{ filter: "blur(2px)" }} />
-        <div className="absolute inset-0 bg-[#0f0505]/88" />
-      </div>
+    <section id="about" className="py-24 px-5 md:px-8 bg-white">
+      <div className="max-w-6xl mx-auto">
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="reveal section-label mb-4" style={{ color: "#f5d7a0" }}>О спектакле</div>
-        <h2 className="reveal font-cormorant text-[clamp(2rem,5vw,3.6rem)] font-bold italic text-white text-center mb-16 leading-tight">
-          Культовая пьеса,<br />
-          <span className="text-[#C8102E]">ожившая на сцене</span>
-        </h2>
+        <div className="reveal text-center mb-14">
+          <div className="section-eyebrow mb-3">О спектакле</div>
+          <h2 className="font-cormorant text-[clamp(2rem,5vw,3.5rem)] font-bold italic text-[#1a1a1a] leading-tight">
+            Культовая пьеса —<br />
+            <span className="text-[#C8102E]">живой и искренний театр</span>
+          </h2>
+          <span className="divider-red" />
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-14 items-center">
-          <div className="reveal order-2 md:order-1">
-            <div className="relative aspect-video overflow-hidden border border-[#C8102E]/40 shadow-2xl">
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-                title="Трейлер"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8102E] pointer-events-none" />
-            </div>
-            <div className="font-montserrat text-[0.52rem] tracking-widest uppercase text-white/28 text-center mt-3">
-              Официальный трейлер спектакля
-            </div>
-          </div>
-
-          <div className="order-1 md:order-2">
-            <p className="reveal font-montserrat text-sm leading-loose text-white/68 mb-5">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          {/* Text */}
+          <div>
+            <p className="reveal font-montserrat text-[0.9rem] leading-[1.9] text-gray-600 mb-5">
               Москва, коммунальная квартира у Покровских ворот. Хозяйка Маргарита Павловна
-              железной рукой управляет бывшим мужем Львом Евгеньевичем. Молодой студент Костик
-              наблюдает за этим карнавалом жизни — с иронией и неизменным оптимизмом.
+              железной рукой управляет бывшим мужем Львом Евгеньевичем и тщательно контролирует
+              его личную жизнь. Молодой студент Костик наблюдает за этим карнавалом —
+              с иронией, лёгкостью и неизменным оптимизмом.
             </p>
-            <p className="reveal font-montserrat text-sm leading-loose text-white/68 mb-10">
-              Блистательная пьеса Леонида Зорина о любви, свободе и невозможности изменить другого.
-              Живой оркестр, яркие костюмы эпохи и звёзды московской антрепризы.
+            <p className="reveal font-montserrat text-[0.9rem] leading-[1.9] text-gray-600 mb-8">
+              Пьеса Леонида Зорина — о любви, свободе и невозможности изменить другого человека.
+              Живой оркестр, яркие костюмы эпохи 50–60-х и звёзды московской антрепризы создают
+              атмосферу настоящего праздника.
             </p>
 
+            {/* Credits grid */}
             <div className="reveal grid grid-cols-2 gap-4">
               {[
-                { label: "Автор пьесы",      value: "Леонид Зорин" },
+                { label: "Автор",             value: "Леонид Зорин" },
                 { label: "Режиссёр",          value: "Вячеслав Иванов" },
                 { label: "Театр",             value: "«Буфф-Парадиз»" },
                 { label: "Продолжительность", value: "2 ч 30 мин" },
               ].map((c) => (
-                <div key={c.label} className="border-l-2 border-[#C8102E] pl-3">
-                  <div className="font-montserrat text-[0.5rem] uppercase tracking-widest text-white/33">{c.label}</div>
-                  <div className="font-montserrat text-xs font-semibold text-[#f5d7a0] mt-0.5">{c.value}</div>
+                <div key={c.label} className="bg-[#FDF6EE] p-4 border-l-[3px] border-[#C8102E]">
+                  <div className="font-montserrat text-[0.5rem] uppercase tracking-widest text-gray-400 mb-1">{c.label}</div>
+                  <div className="font-montserrat text-sm font-bold text-[#1a1a1a]">{c.value}</div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Poster image */}
+          <div className="reveal card-lift">
+            <div className="relative">
+              <div className="absolute -top-3 -right-3 w-full h-full border-2 border-[#C8102E]/25" />
+              <img
+                src={POSTER}
+                alt="Афиша спектакля"
+                className="relative w-full object-cover shadow-xl"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* What to expect — 3 pillars */}
+        <div className="reveal grid sm:grid-cols-3 gap-6">
+          {[
+            { icon: "Music",      title: "Живой оркестр",   text: "Легендарные мелодии эпохи 50–60-х в живом исполнении на каждом спектакле." },
+            { icon: "Laugh",      title: "Искренний юмор",  text: "Лёгкая, добрая комедия без пошлости — смех, который объединяет весь зал." },
+            { icon: "Star",       title: "Звёзды сцены",    text: "Заслуженные артисты России в каждой роли — профессионализм высшей пробы." },
+          ].map((p) => (
+            <div key={p.title} className="text-center p-6 border border-gray-100 bg-[#FDF6EE] card-lift">
+              <div className="w-12 h-12 bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center mx-auto mb-4">
+                <Icon name={p.icon} size={20} className="text-[#C8102E]" />
+              </div>
+              <div className="font-cormorant text-xl font-bold text-[#1a1a1a] mb-2">{p.title}</div>
+              <div className="font-montserrat text-[0.78rem] leading-relaxed text-gray-500">{p.text}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Team() {
+/* ─── Video ─── */
+function Video() {
   return (
-    <section id="team" className="relative py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src={NEW_PHOTO}
-          alt=""
-          className="w-full h-full object-cover"
-          style={{ objectPosition: "center 70%" }}
-        />
-        <div className="absolute inset-0 bg-[#0f0505]/85" />
+    <section className="py-20 px-5 md:px-8 bg-[#1a1a1a]">
+      <div className="max-w-4xl mx-auto">
+        <div className="reveal text-center mb-10">
+          <div className="section-eyebrow mb-3" style={{ color: "#D4A843" }}>Трейлер</div>
+          <h2 className="font-cormorant text-[clamp(1.8rem,4vw,3rem)] font-bold italic text-white leading-tight">
+            Посмотрите фрагмент спектакля
+          </h2>
+        </div>
+
+        <div className="reveal relative aspect-video border border-white/10 shadow-2xl">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Трейлер Покровские ворота"
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8102E] pointer-events-none" />
+        </div>
       </div>
+    </section>
+  );
+}
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="reveal section-label mb-4" style={{ color: "#f5d7a0" }}>Постановщики</div>
-        <h2 className="reveal font-cormorant text-[clamp(2rem,5vw,3.6rem)] font-bold italic text-white text-center mb-16">
-          Команда спектакля
-        </h2>
+/* ─── Cast ─── */
+function Cast() {
+  return (
+    <section id="cast" className="py-24 px-5 md:px-8 bg-white">
+      <div className="max-w-6xl mx-auto">
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {[
-            { name: "Вячеслав Иванов",  role: "Художественный руководитель и режиссёр-постановщик" },
-            { name: "Леонид Зорин",     role: "Автор пьесы «Покровские ворота»" },
-            { name: "Труппа театра",    role: "Московский театр музыкальной антрепризы «Буфф-Парадиз»" },
-            { name: "Живой оркестр",    role: "Музыкальное сопровождение спектакля" },
-          ].map((a, i) => (
-            <div key={i} className="reveal retro-card p-6 group">
-              <div className="w-9 h-9 bg-[#C8102E]/18 border border-[#C8102E]/40 flex items-center justify-center mb-4 group-hover:bg-[#C8102E]/38 transition-all duration-300">
-                <Icon name="Star" size={14} className="text-[#f5d7a0]" />
+        <div className="reveal text-center mb-14">
+          <div className="section-eyebrow mb-3">Постановщики и труппа</div>
+          <h2 className="font-cormorant text-[clamp(2rem,5vw,3.5rem)] font-bold italic text-[#1a1a1a] leading-tight">
+            Актёры и команда
+          </h2>
+          <span className="divider-red" />
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {cast.map((person, i) => (
+            <div key={i} className="reveal card-lift group text-center">
+              <div className="relative overflow-hidden mb-4 aspect-[3/4]">
+                <img
+                  src={person.img}
+                  alt={person.name}
+                  className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-600"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C8102E] scale-x-0 group-hover:scale-x-100 transition-transform duration-400" />
               </div>
-              <div className="font-cormorant text-[1.1rem] font-bold text-[#f5d7a0] mb-1">{a.name}</div>
-              <div className="font-montserrat text-[0.56rem] leading-relaxed text-white/48">{a.role}</div>
+              <div className="font-cormorant text-[1.05rem] font-bold text-[#1a1a1a] group-hover:text-[#C8102E] transition-colors duration-300">
+                {person.name}
+              </div>
+              <div className="font-montserrat text-[0.62rem] font-semibold uppercase tracking-wider text-[#C8102E] mt-0.5">
+                {person.role}
+              </div>
+              <div className="font-montserrat text-[0.6rem] text-gray-400 mt-1">{person.note}</div>
             </div>
           ))}
         </div>
 
-        <div className="reveal border border-[#C8102E]/40 bg-[#C8102E]/10 p-8 text-center">
-          <div className="font-montserrat text-[0.54rem] uppercase tracking-[0.28em] text-[#f5d7a0]/55 mb-3">
-            Художественный руководитель и режиссёр-постановщик
+        {/* Director highlight */}
+        <div className="reveal bg-[#FDF6EE] border border-gray-100 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-shrink-0">
+            <div className="w-20 h-20 bg-[#C8102E] flex items-center justify-center">
+              <Icon name="Award" size={32} className="text-white" />
+            </div>
           </div>
-          <div className="font-cormorant text-[clamp(1.5rem,4vw,2.8rem)] font-bold italic text-white">
-            Вячеслав Иванов
-          </div>
-          <div className="font-montserrat text-[0.62rem] tracking-widest uppercase text-[#C8102E] mt-2">
-            Заслуженный артист России
+          <div>
+            <div className="font-montserrat text-[0.56rem] uppercase tracking-[0.3em] text-gray-400 mb-1">
+              Художественный руководитель и режиссёр-постановщик
+            </div>
+            <div className="font-cormorant text-[clamp(1.4rem,3.5vw,2.4rem)] font-bold italic text-[#1a1a1a] mb-1">
+              Вячеслав Иванов
+            </div>
+            <div className="font-montserrat text-[0.65rem] tracking-widest uppercase text-[#C8102E] font-bold mb-3">
+              Заслуженный артист России
+            </div>
+            <p className="font-montserrat text-[0.82rem] leading-relaxed text-gray-500 max-w-xl">
+              Один из самых востребованных режиссёров музыкального театра России.
+              Более 30 постановок на ведущих сценах страны. Под его руководством
+              театр «Буфф-Парадиз» объехал более 100 городов с неизменным аншлагом.
+            </p>
           </div>
         </div>
       </div>
@@ -120,7 +178,8 @@ export default function TheaterContent() {
   return (
     <>
       <About />
-      <Team />
+      <Video />
+      <Cast />
     </>
   );
 }

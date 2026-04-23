@@ -1,52 +1,61 @@
 import Icon from "@/components/ui/icon";
 import { NEW_PHOTO, marquee } from "./constants";
 
+const stats = [
+  { value: "9+",       label: "лет на сцене" },
+  { value: "500 000+", label: "зрителей" },
+  { value: "100+",     label: "городов России" },
+  { value: "12+",      label: "возрастной рейтинг" },
+];
+
+const infoItems = [
+  { icon: "MapPin",    label: "Город",    val: "Пермь" },
+  { icon: "Calendar",  label: "Дата",     val: "13 февраля" },
+  { icon: "Clock",     label: "Начало",   val: "19:00" },
+  { icon: "Building2", label: "Площадка", val: "ДК Солдатова" },
+];
+
 function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col overflow-hidden">
-
       <div className="absolute inset-0">
         <img
           src={NEW_PHOTO}
-          alt="Покровские ворота — труппа"
+          alt="Покровские ворота"
           className="w-full h-full object-cover object-top ken-burns"
         />
-        <div className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to bottom, rgba(15,5,5,0.55) 0%, rgba(15,5,5,0.15) 40%, rgba(15,5,5,0.75) 75%, rgba(15,5,5,0.96) 100%)"
-          }}
-        />
-        <div className="absolute inset-0"
-          style={{ background: "linear-gradient(to right, rgba(15,5,5,0.55) 0%, transparent 30%, transparent 70%, rgba(15,5,5,0.55) 100%)" }}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(170deg, rgba(15,5,5,0.72) 0%, rgba(15,5,5,0.35) 45%, rgba(15,5,5,0.85) 100%)" }}
         />
       </div>
 
-      <div className="relative z-10 flex-1 flex items-end pb-16 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-2xl">
+      <div className="relative z-10 flex-1 flex flex-col justify-end pb-16 md:pb-24 pt-24">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 w-full">
+          <div className="max-w-3xl">
 
             <div className="opacity-0" style={{ animation: "fadeUp .6s ease-out .1s forwards" }}>
-              <div className="inline-flex items-center gap-3 mb-5">
-                <div className="w-7 h-px bg-[#C8102E]" />
-                <span className="font-montserrat text-[0.58rem] tracking-[0.28em] uppercase text-[#f5d7a0]/75">
-                  Московский театр музыкальной антрепризы
+              <div className="inline-flex items-center gap-2.5 mb-5">
+                <div className="w-6 h-px bg-[#C8102E]" />
+                <span className="font-montserrat text-[0.56rem] tracking-[0.28em] uppercase text-white/70 font-semibold">
+                  Московский театр музыкальной антрепризы «Буфф-Парадиз»
                 </span>
               </div>
             </div>
 
             <div
-              className="font-cormorant text-[clamp(1rem,2.2vw,1.35rem)] italic text-[#f5d7a0]/75 mb-1 opacity-0"
-              style={{ animation: "fadeUp .7s ease-out .25s forwards" }}
+              className="font-cormorant text-[clamp(0.95rem,2vw,1.25rem)] italic text-white/65 mb-1 opacity-0"
+              style={{ animation: "fadeUp .7s ease-out .2s forwards" }}
             >
               Леонид Зорин
             </div>
 
             <h1
-              className="font-cormorant font-bold italic text-white leading-[0.88] mb-5 opacity-0"
+              className="font-cormorant font-bold italic text-white leading-[0.9] mb-4 opacity-0"
               style={{
-                fontSize: "clamp(3.8rem, 10.5vw, 9rem)",
-                animation: "fadeUp .85s ease-out .4s forwards",
-                textShadow: "0 3px 32px rgba(200,16,46,0.45)",
+                fontSize: "clamp(3.5rem, 10vw, 8.5rem)",
+                animation: "fadeUp .85s ease-out .35s forwards",
+                textShadow: "0 4px 40px rgba(200,16,46,0.4)",
               }}
             >
               Покров&shy;ские<br />
@@ -54,62 +63,83 @@ function Hero() {
             </h1>
 
             <div
-              className="inline-block font-montserrat text-[0.63rem] tracking-[0.24em] uppercase text-white bg-[#C8102E] px-4 py-1.5 mb-8 opacity-0"
-              style={{ animation: "fadeUp .7s ease-out .55s forwards" }}
+              className="inline-block mb-8 opacity-0"
+              style={{ animation: "fadeUp .7s ease-out .5s forwards" }}
             >
-              Музыкальная комедия
+              <span className="font-montserrat text-[0.62rem] tracking-[0.22em] uppercase font-bold bg-[#C8102E] text-white px-4 py-1.5">
+                Музыкальная комедия
+              </span>
             </div>
 
             <div
-              className="flex flex-wrap gap-5 mb-9 opacity-0"
-              style={{ animation: "fadeUp .8s ease-out .65s forwards" }}
+              className="flex flex-wrap gap-3 mb-10 opacity-0"
+              style={{ animation: "fadeUp .8s ease-out .6s forwards" }}
             >
-              {[
-                { icon: "MapPin",    label: "Город",    val: "Пермь" },
-                { icon: "Calendar",  label: "Дата",     val: "13 февраля" },
-                { icon: "Clock",     label: "Начало",   val: "19:00" },
-                { icon: "Building2", label: "Площадка", val: "ДК Солдатова" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-[#C8102E]/20 border border-[#C8102E]/45 flex items-center justify-center flex-shrink-0">
-                    <Icon name={item.icon} size={12} className="text-[#f5d7a0]" />
-                  </div>
+              {infoItems.map((item) => (
+                <div key={item.label} className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/15 px-3.5 py-2">
+                  <Icon name={item.icon} size={13} className="text-[#C8102E] flex-shrink-0" />
                   <div>
-                    <div className="font-montserrat text-[0.48rem] uppercase tracking-widest text-white/38">{item.label}</div>
-                    <div className="font-montserrat text-[0.78rem] font-semibold text-white">{item.val}</div>
+                    <div className="font-montserrat text-[0.44rem] uppercase tracking-widest text-white/45">{item.label}</div>
+                    <div className="font-montserrat text-[0.74rem] font-semibold text-white leading-tight">{item.val}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4 opacity-0" style={{ animation: "fadeUp .8s ease-out .8s forwards" }}>
-              <a href="#tickets" className="btn-red">Купить билет</a>
-              <a href="#about"   className="btn-cream">О спектакле</a>
+            <div
+              className="flex flex-wrap gap-4 opacity-0"
+              style={{ animation: "fadeUp .8s ease-out .75s forwards" }}
+            >
+              <a href="#tickets" className="btn-red">
+                <Icon name="Ticket" size={15} />
+                Купить билет
+              </a>
+              <a href="#about" className="btn-outline-white">
+                О спектакле
+              </a>
             </div>
           </div>
         </div>
       </div>
 
       <div
-        className="absolute top-24 right-8 rounded-full bg-[#C8102E] flex items-center justify-center shadow-xl opacity-0"
-        style={{ animation: "fadeUp .5s ease-out 1s forwards", width: 52, height: 52 }}
+        className="absolute top-20 right-6 md:right-10 rounded-full bg-[#C8102E] flex items-center justify-center shadow-xl opacity-0"
+        style={{ animation: "fadeUp .5s ease-out 1s forwards", width: 50, height: 50 }}
       >
-        <span className="font-montserrat text-white font-bold text-sm">12+</span>
+        <span className="font-montserrat text-white font-bold text-xs">12+</span>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-35">
-        <div className="w-px h-10 bg-gradient-to-b from-white to-transparent animate-pulse" />
+      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
+        <span className="font-montserrat text-white text-[0.48rem] tracking-widest uppercase">Листать</span>
+        <Icon name="ChevronDown" size={16} className="text-white animate-bounce" />
       </div>
     </section>
   );
 }
 
+function StatsStrip() {
+  return (
+    <div className="bg-[#1a1a1a] py-8 px-5">
+      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.map((s) => (
+          <div key={s.label} className="text-center">
+            <div className="font-cormorant text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-[#C8102E] leading-none">{s.value}</div>
+            <div className="font-montserrat text-[0.56rem] uppercase tracking-widest text-white/45 mt-1">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function MarqueeBar() {
   return (
-    <div className="bg-[#C8102E] py-3 overflow-hidden">
+    <div className="bg-[#C8102E] py-2.5 overflow-hidden">
       <div className="animate-marquee">
         {[...marquee, ...marquee, ...marquee].map((t, i) => (
-          <span key={i} className="font-montserrat text-[0.6rem] font-bold uppercase tracking-[0.22em] text-white/90 px-6">{t}</span>
+          <span key={i} className="font-montserrat text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white/90 px-5">
+            {t}
+          </span>
         ))}
       </div>
     </div>
@@ -120,6 +150,7 @@ export default function TheaterHero() {
   return (
     <>
       <Hero />
+      <StatsStrip />
       <MarqueeBar />
     </>
   );

@@ -2,7 +2,7 @@ import Icon from "@/components/ui/icon";
 import { NEW_PHOTO, marquee } from "./constants";
 
 const stats = [
-  { value: "9+",       label: "лет на сцене" },
+  { value: "3+",       label: "лет на сцене" },
   { value: "500 000+", label: "зрителей" },
   { value: "100+",     label: "городов России" },
   { value: "12+",      label: "возрастной рейтинг" },

@@ -19,9 +19,7 @@ function Tickets() {
             Ближайшие показы
           </h2>
           <span className="divider-red mt-4 block mx-auto" style={{ width: "3rem", height: "3px", background: "#C8102E" }} />
-          <p className="font-montserrat text-[0.75rem] text-white/40 mt-4 uppercase tracking-widest">
-            Гастрольный тур по городам России
-          </p>
+
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">

@@ -18,7 +18,7 @@ export const reviews = [
 export const cast = [
   { name: "Вячеслав Иванов",  role: "Режиссёр-постановщик", note: "Заслуженный артист России", img: IVANOV_PHOTO },
   { name: "Труппа «Буфф-Парадиз»", role: "Ведущие актёры",  note: "Московский театр антрепризы", img: NEW_PHOTO },
-  { name: "Леонид Зорин",     role: "Автор пьесы",           note: "Классик советской драматургии", img: POSTER },
+  { name: "Леонид Зорин",     role: "Автор пьесы",           note: "Классик советской драматургии", img: "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/4dbf30e7-f8a2-42b9-87a1-2b23c0f2523a.jpg" },
   { name: "Живой звук",    role: "Музыкальное сопровождение", note: "Хиты советской эпохи", img: NEW_PHOTO },
 ];
 

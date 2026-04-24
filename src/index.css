@@ -232,9 +232,10 @@
     }
   }
   .animate-marquee {
-    animation: marquee 22s linear infinite;
+    animation: marquee 30s linear infinite;
     display: flex;
     white-space: nowrap;
+    will-change: transform;
   }
 
   /* ── Ken Burns hero bg ── */

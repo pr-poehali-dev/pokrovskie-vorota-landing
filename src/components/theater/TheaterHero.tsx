@@ -138,12 +138,19 @@ function StatsStrip() {
   );
 }
 
+const MARQUEE_ITEMS = [...marquee, ...marquee, ...marquee, ...marquee, ...marquee, ...marquee, ...marquee, ...marquee];
+
 function MarqueeBar() {
   return (
     <div className="bg-[#C8102E] py-2.5 overflow-hidden">
-      <div className="animate-marquee">
-        {[...marquee, ...marquee, ...marquee].map((t, i) => (
-          <span key={i} className="font-montserrat text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white/90 px-5">
+      <div className="flex w-max animate-marquee">
+        {MARQUEE_ITEMS.map((t, i) => (
+          <span key={i} className="font-montserrat text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white/90 px-5 shrink-0">
+            {t}
+          </span>
+        ))}
+        {MARQUEE_ITEMS.map((t, i) => (
+          <span key={`b-${i}`} className="font-montserrat text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white/90 px-5 shrink-0" aria-hidden>
             {t}
           </span>
         ))}

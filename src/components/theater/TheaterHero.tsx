@@ -91,10 +91,15 @@ function Hero() {
               className="flex flex-wrap gap-4 opacity-0"
               style={{ animation: "fadeUp .8s ease-out .75s forwards" }}
             >
-              <a href="#tickets" className="btn-red">
-                <Icon name="Ticket" size={15} />
-                Купить билет
-              </a>
+              <div className="relative">
+                <div className="absolute -bottom-3.5 -right-3.5 bg-yellow-400 text-[#1a1a1a] text-[0.82rem] px-2.5 py-0.5 rounded-sm whitespace-nowrap z-10 rotate-6 shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
+                  без комиссии
+                </div>
+                <a href="#tickets" className="btn-red">
+                  <Icon name="Ticket" size={15} />
+                  Купить билет
+                </a>
+              </div>
               <a href="#about" className="btn-outline-white">
                 О спектакле
               </a>

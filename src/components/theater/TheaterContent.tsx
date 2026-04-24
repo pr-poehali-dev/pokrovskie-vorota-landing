@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "@/components/ui/icon";
 import { NEW_PHOTO, POSTER, cast } from "./constants";
 
@@ -82,6 +83,8 @@ function About() {
 
 /* ─── Video ─── */
 function Video() {
+  const [playing, setPlaying] = React.useState(false);
+
   return (
     <section className="py-20 px-5 md:px-8 bg-[#1a1a1a]">
       <div className="max-w-4xl mx-auto">
@@ -92,14 +95,36 @@ function Video() {
           </h2>
         </div>
 
-        <div className="reveal relative aspect-video border border-white/10 shadow-2xl">
-          <iframe
-            src="https://vkvideo.ru/video_ext.php?oid=1107808138&id=456239017&hd=2"
-            title="Трейлер Покровские ворота"
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+        <div className="reveal relative aspect-video border border-white/10 shadow-2xl overflow-hidden">
+          {playing ? (
+            <iframe
+              src="https://vkvideo.ru/video_ext.php?oid=1107808138&id=456239017&hd=2&autoplay=1"
+              title="Трейлер Покровские ворота"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <button
+              onClick={() => setPlaying(true)}
+              className="relative w-full h-full group block"
+              aria-label="Смотреть трейлер"
+            >
+              <img
+                src="https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/files/f1e83601-25b1-4a61-9f9d-90b640287f22.jpg"
+                alt="Трейлер спектакля"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-[#C8102E] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                  <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </button>
+          )}
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8102E] pointer-events-none" />
         </div>
       </div>

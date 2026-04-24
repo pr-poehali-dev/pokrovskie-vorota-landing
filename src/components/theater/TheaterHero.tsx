@@ -12,7 +12,7 @@ const infoItems = [
   { icon: "MapPin",    label: "Город",    val: "Севастополь" },
   { icon: "Calendar",  label: "Дата",     val: "13 февраля" },
   { icon: "Clock",     label: "Начало",   val: "19:00" },
-  { icon: "Building2", label: "Площадка", val: "ДК Солдатова" },
+  { icon: "Building2", label: "Площадка", val: "ДК Рыбаков" },
 ];
 
 function Hero() {

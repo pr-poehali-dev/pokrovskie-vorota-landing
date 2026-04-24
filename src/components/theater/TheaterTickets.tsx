@@ -336,7 +336,7 @@ function Footer() {
             <div className="font-montserrat text-[0.52rem] uppercase tracking-widest text-white/35 mb-5">Контакты</div>
             <div className="space-y-3">
               {[
-                { icon: "Phone", val: "+7 (495) 000-00-00" },
+                { icon: "Phone", val: "+7 (922) 415-44-63" },
                 { icon: "Mail",  val: "info@buffparadiz.ru" },
                 { icon: "MapPin",val: "Москва, Россия" },
               ].map((c) => (

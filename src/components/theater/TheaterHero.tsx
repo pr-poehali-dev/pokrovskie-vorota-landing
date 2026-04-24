@@ -54,7 +54,7 @@ function Hero() {
             <h1
               className="leading-[1.05] mb-4 opacity-0"
               style={{
-                fontFamily: "'Lobster', cursive",
+                fontFamily: "'Pacifico', cursive",
                 fontSize: "clamp(3.8rem, 11vw, 9rem)",
                 color: "#C8102E",
                 WebkitTextStroke: "2px #fff",

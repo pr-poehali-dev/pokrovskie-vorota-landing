@@ -63,9 +63,7 @@ function Tickets() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Ticket" size={11} className="text-[#C8102E] flex-shrink-0" />
-                  <span className="font-montserrat text-[0.72rem] font-bold text-[#D4A843]">
-                    {show.price} — {show.priceVip}
-                  </span>
+                  <span className="font-montserrat text-[0.72rem] font-bold text-[#D4A843]">билеты 1600 - 3500 руб.</span>
                 </div>
               </div>
 

@@ -10,9 +10,9 @@ const stats = [
 
 const infoItems = [
   { icon: "MapPin",    label: "Город",    val: "Севастополь" },
-  { icon: "Calendar",  label: "Дата",     val: "13 февраля" },
+  { icon: "Calendar",  label: "Дата",     val: "19 августа" },
   { icon: "Clock",     label: "Начало",   val: "19:00" },
-  { icon: "Building2", label: "Площадка", val: "ДК Рыбаков" },
+  { icon: "Building2", label: "Площадка", val: "ДКР" },
 ];
 
 function Hero() {

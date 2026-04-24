@@ -50,9 +50,14 @@ export default function TheaterNav() {
         </nav>
 
         {/* CTA */}
-        <a href="#tickets" className="hidden md:block btn-red text-sm py-2.5 px-5">
-          Купить билет
-        </a>
+        <div className="hidden md:block relative">
+          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-yellow-400 text-[#1a1a1a] text-[0.5rem] font-bold tracking-widest uppercase px-2 py-0.5 rounded-sm whitespace-nowrap z-10">
+            без комиссии
+          </div>
+          <a href="#tickets" className="block btn-red text-sm py-2.5 px-5">
+            Купить билет
+          </a>
+        </div>
 
         {/* Burger */}
         <button

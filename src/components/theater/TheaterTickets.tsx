@@ -90,7 +90,7 @@ function Tickets() {
               <Icon name="Phone" size={16} className="text-white" />
             </div>
             <div>
-              <div className="font-montserrat text-[0.5rem] uppercase tracking-widest text-white/35">Касса театра</div>
+              <div className="font-montserrat text-[0.5rem] uppercase tracking-widest text-white/35">информация</div>
               <div className="font-cormorant text-xl font-bold text-[#D4A843]">+7 (922) 415-44-63</div>
             </div>
           </div>

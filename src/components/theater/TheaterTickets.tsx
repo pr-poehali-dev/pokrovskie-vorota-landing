@@ -68,10 +68,15 @@ function Tickets() {
               </div>
 
               {show.status !== "sold" ? (
-                <button className="btn-red w-full justify-center">
-                  <Icon name="ShoppingCart" size={14} />
-                  Купить билет
-                </button>
+                <div className="relative">
+                  <div className="absolute -bottom-3.5 -right-3.5 bg-yellow-400 text-[#1a1a1a] text-[0.82rem] px-2.5 py-0.5 rounded-sm whitespace-nowrap z-10 rotate-6 shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
+                    без комиссии
+                  </div>
+                  <button className="btn-red w-full justify-center">
+                    <Icon name="ShoppingCart" size={14} />
+                    Купить билет
+                  </button>
+                </div>
               ) : (
                 <div className="font-montserrat text-[0.55rem] uppercase tracking-widest text-center text-white/20 border border-white/8 py-3">
                   Все места проданы

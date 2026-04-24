@@ -40,6 +40,7 @@ function Hero() {
                 <span className="font-montserrat text-[0.56rem] tracking-[0.28em] uppercase text-white/70 font-semibold">
                   Московский театр музыкальной антрепризы «Буфф-Парадиз»
                 </span>
+                <div className="w-6 h-px bg-[#C8102E]" />
               </div>
             </div>
 

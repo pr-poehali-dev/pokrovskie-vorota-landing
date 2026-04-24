@@ -101,7 +101,7 @@ function Tickets() {
             <div className="font-montserrat text-[0.52rem] uppercase tracking-widest text-white/30">Режим работы</div>
             <div className="font-montserrat text-[0.72rem] text-white/55 mt-0.5">Пн–Пт: 11:00–19:00 · Сб–Вс: 12:00–18:00</div>
           </div>
-          <a href="mailto:info@buffparadiz.ru" className="btn-outline-white flex-shrink-0">
+          <a href="mailto:indigo_fest@mail.ru" className="btn-outline-white flex-shrink-0">
             <Icon name="Mail" size={14} />
             Написать нам
           </a>
@@ -345,7 +345,7 @@ function Footer() {
             <div className="space-y-3">
               {[
                 { icon: "Phone", val: "+7 (922) 415-44-63" },
-                { icon: "Mail",  val: "info@buffparadiz.ru" },
+                { icon: "Mail",  val: "indigo_fest@mail.ru" },
                 { icon: "MapPin",val: "Москва, Россия" },
               ].map((c) => (
                 <div key={c.val} className="flex items-center gap-2.5">

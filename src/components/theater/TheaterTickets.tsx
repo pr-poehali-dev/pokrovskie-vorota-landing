@@ -204,7 +204,14 @@ function FAQ() {
 /* ─── Gallery strip ─── */
 function GalleryStrip() {
   const [sel, setSel] = useState<number | null>(null);
-  const images = [NEW_PHOTO, NEW_PHOTO, NEW_PHOTO, NEW_PHOTO, NEW_PHOTO, NEW_PHOTO];
+  const images = [
+    "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/aa8705ca-f10c-4744-85eb-979e23f33ff8.jpg",
+    "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/cf7539a3-dcef-4a6a-a973-8134ee3a2bc2.jpg",
+    "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/1cd71fa5-3ffb-4606-a9e9-adc659b44094.jpg",
+    "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/95202608-18b4-49d5-b299-a155e306482b.jpg",
+    "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/86dab72c-2379-49e1-b235-6f23f50ff66c.jpg",
+    "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/aa8705ca-f10c-4744-85eb-979e23f33ff8.jpg",
+  ];
 
   return (
     <section id="gallery" className="py-24 px-5 md:px-8 bg-[#FDF6EE]">

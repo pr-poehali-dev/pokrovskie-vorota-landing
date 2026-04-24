@@ -51,7 +51,7 @@ export default function TheaterNav() {
 
         {/* CTA */}
         <div className="hidden md:block relative">
-          <div className="absolute -bottom-4 -right-4 bg-yellow-400 text-[#1a1a1a] text-[0.95rem] px-3 py-1 rounded-sm whitespace-nowrap z-10 rotate-6 shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
+          <div className="absolute -bottom-3.5 -right-3.5 bg-yellow-400 text-[#1a1a1a] text-[0.82rem] px-2.5 py-0.5 rounded-sm whitespace-nowrap z-10 rotate-6 shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
             без комиссии
           </div>
           <a href="#tickets" className="block btn-red text-sm py-2.5 px-5">

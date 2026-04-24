@@ -91,7 +91,7 @@ function Tickets() {
             </div>
             <div>
               <div className="font-montserrat text-[0.5rem] uppercase tracking-widest text-white/35">Касса театра</div>
-              <div className="font-cormorant text-xl font-bold text-[#D4A843]">+7 (495) 000-00-00</div>
+              <div className="font-cormorant text-xl font-bold text-[#D4A843]">+7 (922) 415-44-63</div>
             </div>
           </div>
           <div className="text-center">

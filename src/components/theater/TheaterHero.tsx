@@ -52,15 +52,18 @@ function Hero() {
             </div>
 
             <h1
-              className="font-cormorant font-bold italic text-white leading-[0.9] mb-4 opacity-0"
+              className="leading-[1.05] mb-4 opacity-0"
               style={{
-                fontSize: "clamp(3.5rem, 10vw, 8.5rem)",
+                fontFamily: "'Lobster', cursive",
+                fontSize: "clamp(3.8rem, 11vw, 9rem)",
+                color: "#C8102E",
+                WebkitTextStroke: "2px #fff",
+                paintOrder: "stroke fill",
+                textShadow: "3px 3px 0 #fff, -1px -1px 0 #fff, 2px 6px 18px rgba(0,0,0,0.45)",
                 animation: "fadeUp .85s ease-out .35s forwards",
-                textShadow: "0 4px 40px rgba(200,16,46,0.4)",
               }}
             >
-              Покров&shy;ские<br />
-              <span className="text-[#ffffff]">ворота</span>
+              Покровские<br />ворота
             </h1>
 
             <div

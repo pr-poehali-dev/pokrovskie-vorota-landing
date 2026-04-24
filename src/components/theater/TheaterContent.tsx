@@ -36,7 +36,7 @@ function About() {
                 { label: "Автор",             value: "Леонид Зорин" },
                 { label: "Режиссёр",          value: "Вячеслав Иванов" },
                 { label: "Театр",             value: "«Буфф-Парадиз»" },
-                { label: "Продолжительность", value: "2 ч 30 мин" },
+                { label: "Продолжительность", value: "2 ч 40 мин" },
               ].map((c) => (
                 <div key={c.label} className="bg-[#FDF6EE] p-4 border-l-[3px] border-[#C8102E]">
                   <div className="font-montserrat text-[0.5rem] uppercase tracking-widest text-gray-400 mb-1">{c.label}</div>

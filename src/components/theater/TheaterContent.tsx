@@ -94,7 +94,7 @@ function Video() {
 
         <div className="reveal relative aspect-video border border-white/10 shadow-2xl">
           <iframe
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            src="https://vkvideo.ru/video_ext.php?oid=1107808138&id=456239017&hd=2"
             title="Трейлер Покровские ворота"
             className="w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

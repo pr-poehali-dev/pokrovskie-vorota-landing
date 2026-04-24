@@ -111,7 +111,7 @@ function Video() {
               aria-label="Смотреть трейлер"
             >
               <img
-                src="https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/files/f1e83601-25b1-4a61-9f9d-90b640287f22.jpg"
+                src="https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/cf518ba0-6969-4629-b1de-61742165978a.jpg"
                 alt="Трейлер спектакля"
                 className="w-full h-full object-cover"
               />

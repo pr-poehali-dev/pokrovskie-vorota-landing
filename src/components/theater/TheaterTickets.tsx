@@ -308,9 +308,14 @@ function Footer() {
               Осталось ограниченное количество мест · Покровские ворота
             </div>
           </div>
-          <a href="#tickets" className="btn-outline-white flex-shrink-0 text-base py-4 px-8">
-            Купить билет
-          </a>
+          <div className="relative flex-shrink-0">
+            <div className="absolute -bottom-3.5 -right-3.5 bg-yellow-400 text-[#1a1a1a] text-[0.82rem] px-2.5 py-0.5 rounded-sm whitespace-nowrap z-10 rotate-6 shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
+              без комиссии
+            </div>
+            <a href="#tickets" className="btn-outline-white text-base py-4 px-8">
+              Купить билет
+            </a>
+          </div>
         </div>
 
         {/* Links */}

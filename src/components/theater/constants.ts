@@ -1,4 +1,4 @@
-export const NEW_PHOTO = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/c1377afc-da66-4781-959e-63433a0037e7.jpg";
+export const NEW_PHOTO = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/d74f84f9-3053-4845-be90-87ef8e698def.jpg";
 export const POSTER    = "https://cdn.poehali.dev/projects/10c6b133-4f18-439f-bddd-1f29ea1e9f85/bucket/ef664979-4113-4c8c-ab9b-8656d01fd1b2.png";
 
 export const shows = [

@@ -64,7 +64,7 @@ function About() {
           {[
             { icon: "Music",      title: "Живой звук",   text: "Легендарные мелодии эпохи 50–60-х в живом исполнении на каждом спектакле." },
             { icon: "Laugh",      title: "Искренний юмор",  text: "Лёгкая, добрая комедия без пошлости — смех, который объединяет весь зал." },
-            { icon: "Star",       title: "Звёзды сцены",    text: "Заслуженные артисты России в каждой роли — профессионализм высшей пробы." },
+            { icon: "Star",       title: "Звёзды сцены",    text: "Звезды музыкальной антрепризы в каждой роли — профессионализм высшей пробы." },
           ].map((p) => (
             <div key={p.title} className="text-center p-6 border border-gray-100 bg-[#FDF6EE] card-lift">
               <div className="w-12 h-12 bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center mx-auto mb-4">
